@@ -4,8 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'app/css/styles.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'users/css/styles.css' %}">
 </head>
-<body>
+<header>
 
+</header>
+<body>
+{% block content %}
+{% endblock %}
 </body>
 </html>
