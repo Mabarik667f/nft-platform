@@ -1,39 +1,49 @@
-window.walletAddress = null;
-const connectWallet = document.getElementById('connectWallet');
-const walletAddress = document.getElementById('walletAddress');
+connected = false;
+walletAddress = null;
 
 function checkMetamaskExtension() {
     if(window.ethereum === undefined) {
-        walletAddress.innerText = 'расширение MetaMask не установленно';
         return false;
-    }
+    } 
+    
+}
+
+async function checkLoginMematask() {
+    if (!window.walletAddress) {
+        let address = await connectWalletWithMetaMask();
+        fetch(`/set-session/${address}`)
+        .catch(error => {
+            console.log(error);
+        })
+    } 
+}
+
+function initMetamask() {
+    checkMetamaskExtension();
+    checkLoginMematask()
 }
 
 async function connectWalletWithMetaMask() {
-    const accounts = await window.ethereum.request({method: 'eth_requestAccounts'})
-    .catch(error => {
+    try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length > 0) {
+            window.walletAddress = accounts[0];
+            connected = true;
+            return accounts[0];
+        } else {
+            connected = false;
+            console.error('No accounts found');
+        }
+    } catch (error) {
         console.error(error);
-        return;
-    })
-    if (!accounts) {return}
-
-    window.walletAddress = accounts[0];
-    walletAddress.innerText = window.walletAddress;
-
-    connectWallet.innerText = 'Sign Out';
-    connectWallet.removeEventListener('click', connectWalletWithMetaMask);
-    connectWallet.addEventListener('click', signOutMetaMask);
+    }
 }
 
-async function signOutMetaMask() {
-    window.walletAddress = null;
-    walletAddress.innerText = '';
-    connectWallet.innerText = 'Войти';
-    connectWallet.removeEventListener('click', signOutMetaMask);
-    connectWallet.addEventListener('click', connectWalletWithMetaMask);
-}
+
 document.addEventListener('DOMContentLoaded', function() {
+    initMetamask();
+});
 
-    checkMetamaskExtension();
-    connectWallet.addEventListener('click', connectWalletWithMetaMask());
-})
+window.ethereum.on('accountsChanged', async() => {
+    initMetamask();
+});

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Профиль{% endblock%}
+
+{% block content %}
+
+<div class="container profile-items" style="font-size: 20px;">
+    <div class="col">
+        <div class="col">
+            <h2>Профиль</h2>
+        </div>
+        <div class="col">
+            {% for p in profile_menu %} 
+            <a class="btn btn-primary btn-lg btn-block" role="button"
+            aria-disabled="true" href="{% url p.url %}">{{ p.title }}</a>
+            {% endfor %}
+        </div>
+        <div class="col profile-data-items">
+            <label>Адрес: <span class="address" id="address"></span></label>
+            <label>Баланс в ETH: <span class="eth-balance" id="eth-balance"></span></label>
+            <label>Баланс в токенах ERC20: <span class="token-balance" id="token-balance">{{ token_balance }}</span></label>
+            <div>
+                    
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <h2>Создание</h2>
+        <a class="btn btn-primary btn-lg btn-block" role="button"
+            aria-disabled="true" href="{% url 'create-nft' %}">Создать NFT</a>
+        <a class="btn btn-primary btn-lg btn-block" role="button"
+        aria-disabled="true" href="{% url 'create-collection' %}">Создать Коллекцию</a>
+    </div>
+</div>
+<script src="{% static 'app/js/get-profile-data.js' %}"></script>
+{% endblock %}

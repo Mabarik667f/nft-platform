@@ -1,10 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}Мои NFT{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        {% for nft in nft_items %}
+        <div class="col-3" style="height: 200px;">
+            <div class="d-flex flex-column align-items-center" style="font-size: 20px;">
+                <div class="mb-2">
+                    <span>{{ nft.path_to_image }}</span>
+                </div>
+                <div class="mb-2">
+                    <span>{{ nft.name }}</span>
+                </div>
+                <div class="mt-auto">
+                    <a class="btn btn-primary btn-lg btn-block" role="button" href="{% url 'create-nft' %}">Продать</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
