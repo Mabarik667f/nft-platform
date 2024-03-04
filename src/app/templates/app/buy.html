@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Купить NFT{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-3" style="height: 200px;">
+            <div class="d-flex flex-column align-items-center" style="font-size: 20px;">
+                <div class="mb-2">
+                    <span>{{ nft.name }}</span>
+                </div>
+                <div class="mb-2">
+                    <span>{{ nft.path_to_image }}</span>
+                </div>
+                <div class="mb-2">
+                    <label>Описание<span>{{ nft.describe }}</span>
+                </div>
+                <div class="mb-2">
+                    <label>Количество<span>{{ nft.amount }}</span></label>
+                </div>
+                <div class="mb-2">
+                    <label>Цена<span>{{ nft.price }}</span>
+                </div>
+                <div class="mb-2">
+                    <label>Дата создания<span>{{ nft.createDate }}</span>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="nft_id" value="{{ nft.id }}">
+                    {{ form.as_p }}
+                </form>
+                <div class="mt-auto">
+                    <a class="btn btn-primary btn-lg btn-block" role="button" type="submit">Купить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

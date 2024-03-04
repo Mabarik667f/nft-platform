@@ -22,15 +22,6 @@ header a {
     text-align: center;
 }
 
-.profile-items {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: flex-start;
-}
-.profile-items div {
-    margin: 15px 5px;
-}
 
 .profile-data-items {
     display: flex;

@@ -10,13 +10,23 @@
         <div class="col-3" style="height: 200px;">
             <div class="d-flex flex-column align-items-center" style="font-size: 20px;">
                 <div class="mb-2">
-                    <span>{{ nft.path_to_image }}</span>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="nft-img"
+                    data-nft-name="{{ nft.name }}"
+                    data-nft-describe="{{ nft.describe }}"
+                    data-nft-path-to-image="{{ nft.path_to_image}}"
+                    data-nft-price="{{ nft.price }}"
+                    data-nft-amount="{{ nft.amount }}"
+                    data-nft-create-date="{{ nft.createDate }}"
+                    data-nft-on-sale="{{ nft.on_sale }}"
+                    data-nft-id="{{ nft.nft_id }}">
+                    {{ nft.path_to_image }}
+                </button>
                 </div>
                 <div class="mb-2">
                     <span>{{ nft.name }}</span>
                 </div>
                 <div class="mt-auto">
-                    <a class="btn btn-primary btn-lg btn-block" role="button" href="{% url 'create-nft' %}">Продать</a>
+                    <a class="btn btn-primary btn-lg btn-block" role="button" href="{% url 'nft-sell' nft.nft_id %}">Продать</a>
                 </div>
             </div>
         </div>
@@ -24,4 +34,30 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="myModalLabel">Title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-button"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <span id="nft-name"></span>
+                    <span id="nft-pathToImage"></span>
+                    <span id="nft-describe"></span>
+                    <span id="nft-price"></span>
+                    <span id="nft-amount"></span>
+                    <span id="nft-createDate"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary btn-lg btn-block" role="button" id="nft-sell-or-buy">Продать</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'app/js/modalWindow.js' %}"></script>
 {% endblock %}
