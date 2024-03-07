@@ -1,0 +1,30 @@
+body {
+    font-size: 20px;
+}
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+header a {
+    margin: 20px;
+    width: 150px;
+}
+
+.start-info {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;    
+    justify-content: center;
+    text-align: center;
+}
+
+
+.profile-data-items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}

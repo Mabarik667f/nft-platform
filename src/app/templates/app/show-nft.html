@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Мои NFT{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center align-items-center">
+        {% for nft in nft_items %}
+        <div class="col-3" style="height: 200px;">
+            <div class="d-flex flex-column align-items-center" style="font-size: 20px;">
+                <div class="mb-2">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="nft-img"
+                    data-nft-name="{{ nft.nft_data.name }}"
+                    data-nft-describe="{{ nft.nft_data.describe }}"
+                    data-nft-path-to-image="{{ nft.nft_data.path_to_image}}"
+                    data-nft-price="{{ nft.nft_on_owner.price }}"
+                    data-nft-amount="{{ nft.nft_on_owner.amount }}"
+                    data-nft-create-date="{{ nft.nft_data.createDate }}"
+                    data-nft-on-sale="{{ nft.nft_on_owner.on_sale }}"
+                    data-nft-id="{{ nft.nft_on_owner.object_id }}">
+                    {{ nft.nft_data.path_to_image }}
+                </button>
+                </div>
+                <div class="mb-2">
+                    <span>{{ nft.nft_data.name }}</span>
+                </div>
+                <div class="mb-2">
+                    <span></span>
+                </div>
+                <div class="mt-auto">
+                    <a class="btn btn-primary btn-lg btn-block" role="button" href="{% url 'nft-sell' nft.nft_on_owner.object_id %}">Продать</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-hidden="true" aria-labelledby="myModalLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="myModalLabel">Title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-button"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <span id="nft-name"></span>
+                    <span id="nft-pathToImage"></span>
+                    <span id="nft-describe"></span>
+                    <span id="nft-price"></span>
+                    <span id="nft-amount"></span>
+                    <span id="nft-createDate"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary btn-lg btn-block" role="button" id="nft-sell-or-buy">Продать</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'app/js/modalWindow.js' %}"></script>
+{% endblock %}

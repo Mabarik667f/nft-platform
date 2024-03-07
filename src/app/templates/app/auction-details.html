@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Детали аукциона{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="col d-flex ">
+    <h1>{{ auction.collection.name }}</h1>
+    <label>Описание: <span>{{ auction.collection.describe }}</span></label>
+    <label>Начальна ставка: <span>{{ auction.start_price }}</span></label>
+    <label>Текущая ставка: <span>{{ auction.current_price }}</span></label>
+    <label>Максимальная ставка: <span>{{ auction.max_price }}</span></label>
+    <label>Начало: <span>{{ auction.start_date }}</span></label>
+    <label>Окончание: <span>{{ auction.end_date }}</span></label>
+    <label>Будущий владелец: <span>{{ auction.future_owner }}</span></label>
+</div>
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="auction_id" value="{{ auction.auction_id }}">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-lg btn-primary">Сделать ставку</button>
+</form>
+<button type="submit" class="btn btn-lg btn-danger endAuction" id="{{ auction.auction_id }}">Завершить аукцион</button>
+</div>
+</div>
+<script src="{% static 'app/js/endAuction.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Профиль{% endblock%}
+
+{% block content %}
+
+<div class="container" style="font-size: 20px;">
+    <div class="row d-flex justify-content-between align-items-baseline my-5">
+        <div class="col">
+            <div class="col my-3">
+                <h2>Профиль</h2>
+            </div>
+            <div class="col my-3">
+                {% for p in profile_menu %} 
+                <a class="btn btn-primary btn-lg btn-block" role="button"
+                aria-disabled="true" href="{% url p.url %}">{{ p.title }}</a>
+                {% endfor %}
+            </div>
+            <div class="col profile-data-items my-3">
+                <label>Адрес: <span class="address" id="address"></span></label>
+                <label>Баланс в ETH: <span class="eth-balance" id="eth-balance"></span></label>
+                <label>ERC20: <span class="token-balance" id="token-balance">{{ token_balance }}</span></label>
+                <div>
+                        
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h2>Реферальная программа</h2>
+            <div class="input-group my-3">
+                <input type="text" class="form-control " placeholder="Реферальный код" aria-label="Реферальный код" aria-describedby="button-addon1">
+                <a class="btn btn-primary btn-lg btn-block" role="button" id="button-addon1"
+                aria-disabled="true" href="{% url 'create-collection' %}">Активировать</a>
+            </div>
+            <div class="input-group my-3">
+                <input type="text" class="form-control " placeholder="{{ ref_code }}" aria-label="{{ ref_code }}" aria-describedby="button-addon1" id="ref_code" disabled>
+                <a class="btn btn-primary btn-lg btn-block" role="button" id="button-addon1"
+                aria-disabled="true">Копировать</a>
+            </div>
+            <div class="my-3">
+                <h3>Текущая скидка: %</h3>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Создание</h2>
+            <a class="btn btn-primary btn-lg btn-block" role="button"
+                aria-disabled="true" href="{% url 'create-nft' %}">Создать NFT</a>
+            <a class="btn btn-primary btn-lg btn-block" role="button"
+            aria-disabled="true" href="{% url 'create-collection' %}">Создать Коллекцию</a>
+            <a class="btn btn-primary btn-lg btn-block" role="button"
+            aria-disabled="true" href="{% url 'start-auction' %}">Начать аукцион</a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'app/js/get-profile-data.js' %}"></script>
+<script src="{% static 'app/js/utils.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Коллекции{% endblock%}
+
+{% block content %}
+<div class="container">
+    {% for collection in nft_collections %}
+    <div class="mb2">
+        <span>{{ collection.name }}</span>
+        <span>{{ collection.describe }}</span>
+        {% if collection.nft_ids %}
+        <span>{{ collection.nft_ids }}</span>
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

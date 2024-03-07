@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Аукционы{% endblock%}
+
+{% block content %}
+{% for auction in auction_items %}
+<div>
+    <h3>Аукцион на коллекцию {{ auction.collection.name }}</h3>
+    <a class="btn btn-primary btn-lg btn-block" role="button"
+     href="{% url 'auction-details' auction.auction_id %}">Подробнее</a>
+</div>
+{% endfor %}
+{% endblock %}
