@@ -4,7 +4,8 @@ main_menu = [{'url': 'home', 'title': 'Главная'},
              {'url': 'profile', 'title': 'Профиль'},]
 
 profile_menu = [{'url': 'show-nft', 'title': 'Одиночные NFT'},
-                 {'url': 'show-collections', 'title': 'Коллекции'}]
+                {'url': 'show-collections', 'title': 'Коллекции'},
+                {'url': 'gift-nft', 'title': 'Подарить NFT'}]
 
 
 def get_main_context(request):

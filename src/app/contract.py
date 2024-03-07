@@ -2,7 +2,7 @@ import web3
 
 from .contracts_data import *
 
-GANACHE_URL = 'HTTP://127.0.0.1:7545'
+GANACHE_URL = 'HTTP://localhost:7545'
 w3 = web3.Web3(web3.HTTPProvider(GANACHE_URL))
 
 # w3.eth.default_account = w3.eth.accounts[0]
@@ -21,5 +21,5 @@ w3 = web3.Web3(web3.HTTPProvider(GANACHE_URL))
 # tx_auction_receipt = w3.eth.wait_for_transaction_receipt(tx_auction_hash)
 # auction_address = tx_auction_receipt.contractAddress
 
-contract_address = "0x3c1faB185a067B82c6dF340Fd85028973Dda4FDF"
+contract_address = "0xF7316Fe0A97ed63A853a0f755e0012090d595936"
 contract = w3.eth.contract(address=contract_address, abi=abi_auction)

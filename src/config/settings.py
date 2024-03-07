@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'app.apps.AppConfig',
-    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
@@ -160,18 +159,10 @@ AUTHENTICATION_BACKENDS = [
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# Users registration
-
-LOGIN_URL = 'users:login'
-LOGOUT_URL = 'users:logout'
-LOGOUT_REDIRECT_URL = 'users:login'
-LOGIN_REDIRECT_URL = 'home'
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = []
 

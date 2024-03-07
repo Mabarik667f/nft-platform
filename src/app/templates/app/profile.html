@@ -37,6 +37,9 @@
                 <a class="btn btn-primary btn-lg btn-block" role="button" id="button-addon1"
                 aria-disabled="true">Копировать</a>
             </div>
+            <div class="my-3">
+                <h3>Текущая скидка: %</h3>
+            </div>
 
         </div>
     </div>
@@ -47,6 +50,8 @@
                 aria-disabled="true" href="{% url 'create-nft' %}">Создать NFT</a>
             <a class="btn btn-primary btn-lg btn-block" role="button"
             aria-disabled="true" href="{% url 'create-collection' %}">Создать Коллекцию</a>
+            <a class="btn btn-primary btn-lg btn-block" role="button"
+            aria-disabled="true" href="{% url 'start-auction' %}">Начать аукцион</a>
         </div>
     </div>
 </div>

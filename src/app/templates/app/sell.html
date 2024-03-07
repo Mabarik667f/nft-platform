@@ -9,31 +9,31 @@
         <div class="col-3" style="height: 200px;">
             <div class="d-flex flex-column align-items-center" style="font-size: 20px;">
                 <div class="mb-2">
-                    <span>{{ nft.name }}</span>
+                    <span>{{ nft.nft_data.name }}</span>
                 </div>
                 <div class="mb-2">
-                    <span>{{ nft.path_to_image }}</span>
+                    <span>{{ nft.nft_data.path_to_image }}</span>
                 </div>
                 <div class="mb-2">
-                    <label>Описание<span>{{ nft.describe }}</span>
+                    <label>Описание<span>{{ nft.nft_data.describe }}</span>
                 </div>
                 <div class="mb-2">
-                    <label>Количество<span>{{ nft.amount }}</span></label>
+                    <label>Количество<span>{{ nft.nft_on_owner.amount }}</span></label>
                 </div>
                 <div class="mb-2">
-                    <label>Цена<span>{{ nft.price }}</span>
+                    <label>Цена<span>{{ nft.nft_on_owner.price }}</span>
                 </div>
                 <div class="mb-2">
-                    <label>Дата создания<span>{{ nft.createDate }}</span>
+                    <label>Дата создания<span>{{ nft.nft_data.createDate }}</span>
                 </div>
                 <form method="post">
                     {% csrf_token %}
                     <input type="hidden" name="nft_id" value="{{ nft.id }}">
                     {{ form.as_p }}
+                    <div class="mt-auto">
+                        <button class="btn btn-primary btn-lg " type="submit">Продать</a>
+                    </div>
                 </form>
-                <div class="mt-auto">
-                    <a class="btn btn-primary btn-lg btn-block" role="button" type="submit">Продать</a>
-                </div>
             </div>
         </div>
     </div>

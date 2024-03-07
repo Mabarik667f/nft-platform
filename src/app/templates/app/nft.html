@@ -10,22 +10,23 @@
             <div class="d-flex flex-column align-items-center" style="font-size: 20px;">
                 <div class="mb-2">
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="nft-img"
-                    data-nft-name="{{ nft.name }}"
-                    data-nft-describe="{{ nft.describe }}"
-                    data-nft-path-to-image="{{ nft.path_to_image}}"
-                    data-nft-price="{{ nft.price }}"
-                    data-nft-amount="{{ nft.amount }}"
-                    data-nft-create-date="{{ nft.createDate }}"
-                    data-nft-on-sale="{{ nft.on_sale }}"
-                    data-nft-id="{{ nft.nft_id }}">
-                    {{ nft.path_to_image }}
+                    data-nft-name="{{ nft.nft_data.name }}"
+                    data-nft-describe="{{ nft.nft_data.describe }}"
+                    data-nft-path-to-image="{{ nft.nft_data.path_to_image}}"
+                    data-nft-price="{{ nft.nft_on_owner.price }}"
+                    data-nft-amount="{{ nft.nft_on_owner.amount }}"
+                    data-nft-create-date="{{ nft.nft_data.createDate }}"
+                    data-nft-on-sale="{{ nft.nft_on_owner.on_sale }}"
+                    data-nft-id="{{ nft.nft_on_owner.object_id }}">
+                    {{ nft.nft_data.path_to_image }}
                 </button>
                 </div>
                 <div class="mb-2">
-                    <span>{{ nft.name }}</span>
+                    <span>{{ nft.nft_data.name }}</span>
                 </div>
                 <div class="mt-auto">
-                    <a class="btn btn-primary btn-lg btn-block" role="button" href="{% url 'nft-buy' nft.nft_id %}">Купить</a>
+                    <a class="btn btn-primary btn-lg btn-block" role="button"
+                       href="{% url 'nft-buy' nft.nft_on_owner.object_id %}">Купить</a>
                 </div>
             </div>
         </div>
